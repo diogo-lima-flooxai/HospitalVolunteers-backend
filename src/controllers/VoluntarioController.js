@@ -1,5 +1,6 @@
 // src/controllers/VoluntarioController.js
 const Voluntario = require("../models/Voluntario");
+const bcrypt = require("bcryptjs");
 const voluntarioModel = new Voluntario();
 
 module.exports = {
@@ -21,7 +22,10 @@ module.exports = {
       return res.status(400).json({ error: "Email já cadastrado." });
     }
 
-    const novo = voluntarioModel.create({ name, email, password });
+    // senha criptografada
+    const hashedPassword = bcrypt.hashSync(password, 8);
+    
+    const novo = voluntarioModel.create({ name, email, password: hashedPassword });
     return res.status(201).json(novo);
   },
 
