@@ -19,7 +19,7 @@ module.exports = {
 
     await db.query(
       "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)",
-      [name, email, hashedPassword, role || "volunteer"]
+      [name, email, hashedPassword, role || "voluntario"]
     );
 
     return res.status(201).json({ message: "Usuário registrado com sucesso!" });

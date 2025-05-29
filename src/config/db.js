@@ -9,4 +9,8 @@ const db = mysql.createPool({
     database: process.env.DB_NAME,
 })
 
+db.getConnection()
+  .then(() => console.log("✅ Conectado ao banco com sucesso!"))
+  .catch(err => console.error("❌ Erro ao conectar no banco:", err));
+
 module.exports = db;
